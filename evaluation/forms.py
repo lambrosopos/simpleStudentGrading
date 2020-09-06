@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SelectMultipleField, SubmitField
+from wtforms import StringField, SelectField, SubmitField
 from wtforms.validators import DataRequired, Length, Email
 
 class UserForm(FlaskForm):
@@ -11,6 +11,6 @@ class UserForm(FlaskForm):
 
 class ScoreForm(FlaskForm):
     subject = StringField('Subject', validators=[DataRequired(), Length(min=5, max=50)])
-    score = SelectMultipleField('Score', validators=[DataRequired()])
+    score = SelectField('Score', choices=[1, 2, 3], coerce=int, validators=[DataRequired()])
 
     submit = SubmitField('Submit')
