@@ -11,7 +11,7 @@ def reports():
         username = request.form['user']
         user_id = User.query.filter_by(username=username).first().id
         user_scores = Score.query.filter_by(user_id=user_id).join(Subject, Subject.id == Score.subject_id).all()
-        if user_scores is False:
+        if len(user_scores) < 1:
             flash(f'No scores available for {username}', 'warning')
         else:
             flash(f'Successfully queried scores for {username}', 'success')
@@ -38,14 +38,13 @@ def submission_page():
                 except:
                     flash('Unable to add subject!', 'warning')
 
-            else:
-                new_score = Score(score=score['score'], user_id=score['user'], subject_id=get_subject.id)
-                try:
-                    db.session.add(new_score)
-                    db.session.commit()
-                    flash(f'Successfully added new score for {get_subject.subject}', 'success')
-                except:
-                    flash('Unable to add score!', 'danger')
+            new_score = Score(score=score['score'], user_id=score['user'], subject_id=get_subject.id)
+            try:
+                db.session.add(new_score)
+                db.session.commit()
+                flash(f'Successfully added new score for {get_subject.subject}', 'success')
+            except:
+                flash('Unable to add score!', 'danger')
 
     users = User.query.order_by(User.date_created).all()
     return render_template('submit.html', users=users, form=form)

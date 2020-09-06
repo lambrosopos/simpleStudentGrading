@@ -26,6 +26,7 @@
       <th scope="col">#</th>
       <th scope="col">Subject</th>
       <th scope="col">Score</th>
+      <th scope="col">Date Added</th>
     </tr>
   </thead>
   <tbody>
@@ -34,6 +35,7 @@
         <th scope="row">{{loop.index}}</th>
         <td>{{score.subject.subject}}</td>
         <td>{{score.score}}</td>
+        <td>{{score.date_created.strftime('%H:%M (%Y-%m-%d)')}}</td>
     {% endfor %}
   </tbody>
 </table>
