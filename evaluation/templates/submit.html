@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+<h1 class="display-4">Submit Report</h1>
+{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+<form action='/submit' method='POST'>
+  <div class="form-group">
+    <label for="selectUser">Select User</label>
+    <select class="form-control" name="user">
+      {% for user in users %}
+      <option value={{user.id}}>{{user.username}}({{user.email}})</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="subject">Enter Subject</label>
+    <input class="form-control" name="subject" type="text" placeholder="Subject Name">
+  </div>
+
+  <div class="form-group">
+    <label for="scoreSelection">Choose a score</label>
+    <select class="form-control" name="scoreSelection" id="scoreSelection">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+</form>
+{% endblock %}
+

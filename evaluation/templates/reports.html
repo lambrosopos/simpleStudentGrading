@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+
+{% block page_title %}
+<h1 class="display-4">View Reports</h1>
+{% endblock %}
+
+{% block body %}
+<form action='/' method='POST'>
+  <div class="form-group">
+    <label for="selectUser">Select User</label>
+    <select name='user' class="form-control">
+      {% for user in users %}
+      <option value={{user.id}}>{{user.username}}({{user.email}})</option>
+      {% endfor %}
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary">Search</button>
+</form>
+{% endblock %}
+
