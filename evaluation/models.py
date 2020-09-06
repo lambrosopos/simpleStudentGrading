@@ -29,3 +29,4 @@ class Score(db.Model):
     score = db.Column(db.Integer, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     subject_id = db.Column(db.Integer, db.ForeignKey('subjects.id'), nullable=False)
+    date_created = db.Column(db.DateTime, default=datetime.utcnow)

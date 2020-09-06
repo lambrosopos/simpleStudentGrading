@@ -13,41 +13,30 @@
     <label for="selectUser">Select User</label>
     <select name='user' class="form-control">
       {% for user in users %}
-      <option value={{user.id}}>{{user.username}}({{user.email}})</option>
+      <option value={{user.username}}>{{user.username}}({{user.email}})</option>
       {% endfor %}
     </select>
   </div>
   <button type="submit" class="btn btn-primary">Search</button>
 </form>
+{% if scores %}
 <table class="table">
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
+      <th scope="col">Subject</th>
+      <th scope="col">Score</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-    </tr>
+    {% for score in scores %}
+      <tr>
+        <th scope="row">{{loop.index}}</th>
+        <td>{{score.subject.subject}}</td>
+        <td>{{score.score}}</td>
+    {% endfor %}
   </tbody>
 </table>
+{% endif %}
 {% endblock %}
 
